@@ -26,7 +26,7 @@ wxIMPLEMENT_APP( myApp );
 myFrame::myFrame( const wxString& title, const wxPoint& pos, const wxSize& size ) : wxFrame(NULL, wxID_ANY, title, pos, size)
 {
     wxFileName f( wxStandardPaths::Get().GetUserDataDir() );
-    wxString user_home( f.GetPath() );
+    m_user_home = f.GetPath();
 
     wxColour back_colour1 = wxSystemSettings::GetColour( wxSYS_COLOUR_BACKGROUND );
     wxColour back_colour = back_colour1;
@@ -95,7 +95,7 @@ myFrame::myFrame( const wxString& title, const wxPoint& pos, const wxSize& size 
     combo_format->Select( 0 );
 
     wxStaticText *label_location = new wxStaticText( panel_right, wxID_ANY, "Export Location" );
-    te_location = new wxTextCtrl( panel_right, wxID_ANY, user_home );
+    te_location = new wxTextCtrl( panel_right, wxID_ANY, m_user_home + "/Videos" );
     wxButton *button_browse = new wxButton( panel_right, button_browseID, "Browse" );
     // Export button
     button_export = new wxButton( panel_right, button_exportID, "Export", wxDefaultPosition, wxSize(-1,100) );
@@ -127,7 +127,7 @@ void myFrame::OnAbout(wxCommandEvent& event)
 void myFrame::OnAddFiles( wxCommandEvent& event )
 {
 	wxFileDialog *OpenDialog = new wxFileDialog(
-		this, _("Choose a files to convert"), wxEmptyString, wxEmptyString,
+		this, _("Add files to convert"), m_user_home, wxEmptyString,
 		_("All files (*.*)|*.*"), wxFD_MULTIPLE, wxDefaultPosition );
 
 	// Creates a "open file" dialog with 4 file types
@@ -183,6 +183,7 @@ void myFrame::OnExport( wxCommandEvent& event )
 {
     button_export->Enable( false );
     button_export->SetBackgroundColour( wxColour(200,50,50) );
+    SetStatusText( "Exporting files..." );
 
     long itemIndex = -1;
     while( (itemIndex = listview->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_DONTCARE)) != wxNOT_FOUND )
@@ -261,6 +262,9 @@ void myFrame::OnExport( wxCommandEvent& event )
         }
     } // while(itemIndex)
 
+    SetStatusText( "Done!" );
     button_export->SetBackgroundColour( wxColour(20,80,20) );
     button_export->Enable( true );
+
+    Refresh();
 }

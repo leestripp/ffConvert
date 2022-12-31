@@ -34,6 +34,7 @@ private:
     wxButton *button_export;
     wxArrayString formats;
     wxChoice *combo_format;
+    wxString m_user_home;
 
     wxDECLARE_EVENT_TABLE();
 };
