@@ -3,6 +3,7 @@
 
 makepkg
 build
+.vscode
 *~
 *.autosave
 *.a
