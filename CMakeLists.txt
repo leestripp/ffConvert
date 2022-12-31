@@ -17,6 +17,6 @@ add_executable(${PROJECT_NAME} ${MySources} )
 # Link required libraries to the executable
 target_link_libraries(${PROJECT_NAME} ${wxWidgets_LIBRARIES} )
 
+install(FILES resource/ffConvert.desktop DESTINATION share/applications)
+
 install(TARGETS ${PROJECT_NAME} DESTINATION bin)
-
-

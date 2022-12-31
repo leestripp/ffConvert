@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=ffConvert
+GenericName=Video Converter
+Comment=Simple front-end to ffmpeg
+Keywords=video;convert;
+Exec=/usr/bin/ffConvert
+Icon=manjaro
+Terminal=false
+Type=Application
+Categories=Graphics;Video;
+MimeType=application/x-video;
+
+Hidden=true
