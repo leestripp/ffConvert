@@ -4,7 +4,7 @@ project(ffConvert LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_INSTALL_PREFIX "")
+set(CMAKE_INSTALL_PREFIX "/usr")
 
 find_package(wxWidgets REQUIRED COMPONENTS core base)
 
